@@ -24,7 +24,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: [besu-research-ubuntu-16]
+    runs-on: [besu-research-ubuntu-8]
     permissions:
       actions: read
       contents: read
@@ -40,13 +40,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: adopt
-        java-version: 17
-
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
@@ -60,7 +53,6 @@ jobs:
     # Autobuild failed (OOM)
     # Hence, supply memory args for gradle build
     - run: |
-        JAVA_OPTS="-Xmx1000M" ./gradlew --no-scan compileJava
-
+        JAVA_OPTS="-Xmx2048M" ./gradlew --no-scan compileJava
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
