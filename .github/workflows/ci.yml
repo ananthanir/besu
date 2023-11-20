@@ -75,7 +75,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: adopt
-          java-version: 11
+          java-version: 17
           cache: gradle
       - name: Restore classes
         uses: actions/cache@v3
@@ -104,7 +104,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: adopt
-          java-version: 11
+          java-version: 17
       - name: Download zip
         uses: actions/download-artifact@v3
         with:
@@ -142,7 +142,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: adopt
-          java-version: 11
+          java-version: 17
           cache: gradle
       - name: Restore classes
         uses: actions/cache@v3
@@ -181,7 +181,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: adopt
-          java-version: 11
+          java-version: 17
           cache: gradle
       - name: Restore classes
         uses: actions/cache@v3
@@ -217,7 +217,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: adopt
-          java-version: 11
+          java-version: 17
           cache: gradle
       - name: Restore classes
         uses: actions/cache@v3
