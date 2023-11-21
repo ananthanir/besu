@@ -1,5 +1,6 @@
 name: javadoc
 on:
+  workflow_dispatch: 
   workflow_run:
     workflows: [compile]
     types:
