@@ -9,8 +9,7 @@ on:
 jobs:
   validation:
     name: "Gradle Wrapper Validation"
-    runs-on: [ self-hosted, Linux ]
+    runs-on: [ Linux ]
     steps:
       - uses: actions/checkout@v4
       - uses: gradle/wrapper-validation-action@v1
-        

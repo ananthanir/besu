@@ -14,7 +14,7 @@ on:
 
 jobs:
   lint:
-    runs-on: [ self-hosted, Linux ]
+    runs-on: [ Linux ]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
