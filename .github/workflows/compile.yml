@@ -1,7 +1,8 @@
-name: ci
+name: compile
 on:
-  workflow_call:
-
+  push:
+    branches: [ main ]
+  pull_request:
 
 env:
   GRADLE_OPTS: "-Xmx6g -Dorg.gradle.daemon=false"
@@ -9,12 +10,10 @@ env:
 
 jobs:
   compile:
-    runs-on: [self-hosted, Linux, X64]
+    runs-on: [self-hosted]
     timeout-minutes: 30
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      - name: export runner UID
-        run: echo "runner_uid=$UID" >> $GITHUB_ENV
       - name: Checkout Repo
         uses: actions/checkout@v3
       - name: Set up Java
@@ -29,26 +28,17 @@ jobs:
           gradle-home-cache-cleanup: true
           cache-read-only: false
           arguments: compileJava compileTestJava -Dorg.gradle.parallel=true
-      - name: Correct Ownership in GITHUB_WORKSPACE directory
-        uses: peter-murray/reset-workspace-ownership-action@v1
-        with:
-          user_id: ${{env.runner_uid}}
       - name: save classes
         uses: actions/upload-artifact@v3
         with:
           name: classes
           path: "**/*.class"
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.sha }}
-      - name: list perms
-        run: ls -la
   compileJmh:
-    runs-on: [self-hosted, Linux, X64]
+    runs-on: [self-hosted]
     needs: compile
     timeout-minutes: 30
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      - name: export runner UID
-        run: echo "runner_uid=$UID" >> $GITHUB_ENV
       - name: Checkout Repo
         uses: actions/checkout@v3
       - name: Set up Java
@@ -65,7 +55,3 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: compileJmh
-      - name: Correct Ownership in GITHUB_WORKSPACE directory
-        uses: peter-murray/reset-workspace-ownership-action@v1
-        with:
-          user_id: ${{ env.runner_uid }}
