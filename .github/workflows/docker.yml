@@ -1,8 +1,7 @@
 name: "Container Images"
 on:
-  push:
-    branches: [ main, release-* ]
-  pull_request:
+  workflow_call:
+
 
 jobs:
   buildX64Docker:

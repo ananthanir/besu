@@ -1,8 +1,7 @@
 name: report
 on:
-  workflow_run:
-    workflows: [ci]
-    types: [completed]
+  workflow_call:
+
 
 permissions:
   checks: write

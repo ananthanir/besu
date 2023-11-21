@@ -1,8 +1,7 @@
 name: ci
 on:
-  push:
-    branches: [ main ]
-  pull_request:
+  workflow_call:
+
 
 env:
   GRADLE_OPTS: "-Xmx6g -Dorg.gradle.daemon=false"
