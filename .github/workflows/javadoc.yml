@@ -12,7 +12,7 @@ env:
 
 jobs:
   javadoc_17:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-22.04
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Checkout Repo
