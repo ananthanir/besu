@@ -10,7 +10,7 @@ env:
 
 jobs:
   compile:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-22.04
     timeout-minutes: 30
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
@@ -34,7 +34,7 @@ jobs:
           name: classes
           path: "**/*.class"
   compileJmh:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-22.04
     needs: compile
     timeout-minutes: 30
     if: ${{ github.actor != 'dependabot[bot]' }}
